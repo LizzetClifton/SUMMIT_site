@@ -1,0 +1,116 @@
+<!-- <!doctype html>
+<html>
+ <title>SUM+MIT</title>
+ <head>
+   <link rel="stylesheet" href="../static/main.css">
+ </head>
+ <body>
+   <img id ="title_img" src="../static/sum+mit_title.png"/>
+   <div>
+       {% with messages = get_flashed_messages() %}
+         {% if messages %}
+           <div class=flashes>
+           {% for message in messages %}
+             <div>{{ message }}</div>
+           {% endfor %}
+       </div>
+         {% endif %}
+       {% endwith %}
+   </div>
+   <form method="post" action="/" enctype="multipart/form-data">
+     <dl>
+       <p>
+         <div class="image-upload">
+           <label for="file-input">
+             <img id = "button_img" src="../static/mountain.png" style="max-width: 300px"/>
+           </label>
+           <input id="file-input" type="file" name="file" autocomplete="off" required/>
+         </div>
+       </p>
+     </dl>
+     <p>
+       <input type="submit" value="Submit">
+       </p>
+   </form>
+   <div>
+     {% if filename != "" %}
+       <div>Your image</div>
+       <img id="uploaded_img" src="{{ url_for('static', filename = filename) }}">
+     {% else %}
+       <div>No image has been uploaded.</div>
+     {% endif %}
+   </div>
+ </body>
+</html> -->
+<!doctype html>
+<html>
+ <title>SUM+MIT</title>
+ <head>
+   <link id = "main" rel="stylesheet" type="text/css" title="main" href="../static/css/main.css">
+ </head>
+ <body>
+   <div id="biggest_element">
+     <div class="main_element">
+       <nav role="navigation">
+         <div id="menuToggle">
+           <input type="checkbox" />
+           <span></span>
+           <span></span>
+           <span></span>
+           <ul id="menu">
+            <a href="/">Home</a>
+            <a href="/about">About SUM+MIT</a>
+            <a href="/team">Meet the Team</a>
+            <a href="/contact">Contact Us</a>
+          </ul>
+        </div>
+      </nav>
+     </div>
+     <div class="main_element">
+      <img id ="title_img" src="../static/sum+mit_title.png"/>
+      <div>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div class=flashes>
+              {% for message in messages %}
+                <div>{{ message }}</div>
+              {% endfor %}
+          </div>
+            {% endif %}
+          {% endwith %}
+      </div>
+      <div id ="form">
+        <div>
+          {% if request.method != 'POST': %}
+          <form id = "divsform" method="post" action="/" onsubmit="document.getElementById('divsform').style.display = 'none'" enctype="multipart/form-data">
+            <dl>
+              <p>
+                <div class="image-upload">
+                  <label for="file-input">
+                    <img id = "button_img" src="../static/mountain.png" style="max-width: 300px"/>
+                  </label>
+                  <!-- <input id="file-input" type="file" name="file" onchange='this.form.submit(); myFunction();' autocomplete="off" required/> -->
+                  <input id="file-input" type="file" name="file" onchange='this.form.submit();' autocomplete="off" required/>
+                </div>
+              </p>
+            </dl>
+          </form>
+          {% else %}
+            <div>
+              <img id="uploaded_img" src="{{ url_for('static', filename = filename) }}" style="max-width: 300px">
+            </div>
+            <div>
+              <form action ="/predict", method="post">
+                <input type="hidden" id="filename" name="filename" value="{{ url_for('static', filename = filename) }}">
+                <button id="solve_button" type="submit" value="Solve_eq">Solve</button>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+     </div>
+   </div>
+
+
+ </body>
+</html>

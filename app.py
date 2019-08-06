@@ -1,33 +1,31 @@
 import os
 from flask import Flask, request, redirect, url_for, render_template
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
+# import sys
+# import logging
+# logging.basicConfig(level=logging.DEBUG)
 
-# UPLOAD_FOLDER = '/uploads'
-# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+# app = Flask(__name__)
+
+# @app.route("/")
+# def index():
+#     return render_template('index.html')
+#
+# ButtonPressed = 0
+# @app.route("/button", methods=['GET', 'POST'])
+# def button():
+#     if request.method == "POST":
+#         ButtonPressed = ButtonPressed + 1
+#         return render_template("button.html", ButtonPressed = ButtonPressed)
+#     ButtonPressed = ButtonPressed + 1
+#     return render_template("button.html", ButtonPressed = ButtonPressed)
+
+# UPLOAD_FOLDER = 'D:/uploads'
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
+app.secret_key = "secret key"
 # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-@app.route("/")
-def index():
-    return render_template('index.html')
-
-# def upload_file():
-#     if request.method == 'POST':
-#         # check if the post request has the file part
-#         if 'file' not in request.files:
-#             flash('No file part')
-#             return redirect(request.url)
-#         file = request.files['file']
-#         # if user does not select file, browser also
-#         # submit a empty part without filename
-#         if file.filename == '':
-#             flash('No selected file')
-#             return redirect(request.url)
-#         if file and allowed_file(file.filename):
-#             filename = secure_filename(file.filename)
-#             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#     print("hi")
-
-if __name__ == "__main__":
-    app.run(debug=True)
+target = os.path.join(APP_ROOT, 'static/')
+app.config['APP_ROOT_2'] = target
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+ <title>SUM+MIT</title>
+ <head>
+   <link id = "main" rel="stylesheet" type="text/css" title="main" href="../static/css/main.css">
+ </head>
+ <body>
+   <div id="biggest_element">
+     <div class="main_element">
+       <nav role="navigation">
+         <div id="menuToggle">
+           <input type="checkbox" />
+           <span></span>
+           <span></span>
+           <span></span>
+           <ul id="menu">
+            <a href="/">Home</a>
+            <a href="/about">About SUM+MIT</a>
+            <a href="/team">Meet the Team</a>
+            <a href="/contact">Contact Us</a>
+          </ul>
+        </div>
+      </nav>
+     </div>
+     <div class="main_element">
+       <img id ="title_img" src="../static/sum+mit_title.png"/>
+       <div style="color: white; font-size: 30px; font-family: Gotham, Arial, sans-serif; margin: 50px;">Your equation is: {{ new_str }}</div>
+       <div style="color: white; font-size: 30px; font-family: Gotham, Arial, sans-serif; margin: 50px;">Your solution is: {{ solution }}</div>
+       <form action ="/", method="post">
+         <!-- <input type="hidden" id="filename" name="filename" value="{{ url_for('static', filename = filename) }}"> -->
+         <button id="new_eq_button" type="submit" value="new_eq" style="background-color: rgb(16, 115, 185);
+         border: none;
+         color: white;
+         padding: 15px 32px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 16px;
+         border-radius: 5px;
+         font-family: Gotham, Arial, sans-serif;
+         box-shadow: 5px 5px 10px rgba(5, 12, 28, 1);
+         margin-top: 30px;">SUM+MIT Again</button>
+       </form>
+       <div>
+         {{ img_list }}
+       </div>
+     </div>
+ </body>
+</html>
