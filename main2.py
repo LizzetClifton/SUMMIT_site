@@ -20,6 +20,9 @@ import operator
 import urllib.request
 from app import app
 import math
+from flask import Flask
+from flask_mail import Mail, Message
+import settings
 
 ALLOWED_EXTENSIONS = set(['txt','pdf', 'png', 'jpg', 'jpeg', 'gif'])
 filename = "fubar"
@@ -287,6 +290,49 @@ def crop_and_classify_subimages():
     # print('The equation is: {}'.format(new_str))
     solution = eval(new_str)
     return render_template('upload2.html', solution = solution, new_str = new_str)
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+	return render_template('about.html')
+
+@app.route('/team', methods=['GET', 'POST'])
+def meet():
+	return render_template('meet.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+	return render_template('contact.html')
+
+app.config.update(
+	DEBUG=True,
+    TESTING = False,
+	MAIL_SERVER='smtp.gmail.com',
+	MAIL_PORT=465,
+    MAIL_USE_TLS=False,
+	MAIL_USE_SSL=True,
+	MAIL_USERNAME = settings.EMAIL,
+	MAIL_PASSWORD = settings.PASSWORD,
+    MAIL_DEFAULT_SENDER= settings.EMAIL,
+    MAIL_MAX_EMAILS=None,
+    MAIL_ASCII_ATTACHMENTS=False
+	)
+mail = Mail(app)
+
+@app.route('/send_contact', methods=['POST'])
+def send_contact():
+    name = request.form['firstname']
+    email = request.form['emailad']
+    message = request.form['subject']
+    if name == '':
+        return render_template('name_contact.html', email=email, message=message)
+    if email == '':
+        return render_template('email_contact.html', name=name, message=message)
+    if message == '':
+        return render_template('message_contact.html', email=email, name=name)
+    msg = Message('Message from SUM+MIT', sender=email, recipients=['sleven7777@gmail.com'])
+    msg.body= "From " + name + ":\n\n" + message + "\n\nContact them at: " + email
+    mail.send(msg)
+    return render_template('contact2.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

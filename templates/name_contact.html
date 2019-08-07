@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+ <title>SUM+MIT</title>
+ <head>
+   <link id = "main" rel="stylesheet" type="text/css" title="main" href="../static/css/main.css">
+ </head>
+ <body>
+   <div class="biggest_element">
+     <div class="main_element">
+       <nav role="navigation">
+         <div id="menuToggle">
+           <input type="checkbox" />
+           <span></span>
+           <span></span>
+           <span></span>
+           <ul id="menu">
+            <a href="/">Home</a>
+            <a href="/about">About SUM+MIT</a>
+            <a href="/team">Meet the Team</a>
+            <a href="/contact">Contact Us</a>
+          </ul>
+        </div>
+      </nav>
+     </div>
+     <div class="main_element" id="contact_div">
+       <div class = "title-container">
+         <div class="sub_title">Contact</div>
+         <img class = "container_title_image" src="../static/sum+mit_title.png"/>
+       </div>
+       <form id="form_back" action="/send_contact" method="post">
+         <div id="name_email">
+           <div id="name_area">
+             <label class="form_text" for="name">Please fill out your name*</label>
+             <input type="text" id="bad_name" name="firstname" placeholder="Your name..">
+           </div>
+           <div id="email_area">
+             <label class="form_text" for="email">Enter your email*</label>
+             <input type="text" id="enter_email" name="emailad" value="{{ email }}" placeholder="Your email..">
+           </div>
+         </div>
+         <div id="message_area">
+           <label class="form_text" id="form_text_mess" for="message">Enter your message*</label>
+           <textarea id="subject" name="subject" placeholder="Write something..">{{ message }}</textarea>
+           <input id="submit_contact" type="submit" value="Submit">
+         </div>
+       </form>
+     </div>
+   </div>
+ </body>
+</html>

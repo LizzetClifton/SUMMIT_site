@@ -1,47 +1,3 @@
-<!-- <!doctype html>
-<html>
- <title>SUM+MIT</title>
- <head>
-   <link rel="stylesheet" href="../static/main.css">
- </head>
- <body>
-   <img id ="title_img" src="../static/sum+mit_title.png"/>
-   <div>
-       {% with messages = get_flashed_messages() %}
-         {% if messages %}
-           <div class=flashes>
-           {% for message in messages %}
-             <div>{{ message }}</div>
-           {% endfor %}
-       </div>
-         {% endif %}
-       {% endwith %}
-   </div>
-   <form method="post" action="/" enctype="multipart/form-data">
-     <dl>
-       <p>
-         <div class="image-upload">
-           <label for="file-input">
-             <img id = "button_img" src="../static/mountain.png" style="max-width: 300px"/>
-           </label>
-           <input id="file-input" type="file" name="file" autocomplete="off" required/>
-         </div>
-       </p>
-     </dl>
-     <p>
-       <input type="submit" value="Submit">
-       </p>
-   </form>
-   <div>
-     {% if filename != "" %}
-       <div>Your image</div>
-       <img id="uploaded_img" src="{{ url_for('static', filename = filename) }}">
-     {% else %}
-       <div>No image has been uploaded.</div>
-     {% endif %}
-   </div>
- </body>
-</html> -->
 <!doctype html>
 <html>
  <title>SUM+MIT</title>
@@ -49,7 +5,7 @@
    <link id = "main" rel="stylesheet" type="text/css" title="main" href="../static/css/main.css">
  </head>
  <body>
-   <div id="biggest_element">
+   <div class="biggest_element">
      <div class="main_element">
        <nav role="navigation">
          <div id="menuToggle">
