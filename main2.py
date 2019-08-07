@@ -18,11 +18,20 @@ from gevent.pywsgi import WSGIServer
 from array import array
 import operator
 import urllib.request
-from app import app
+# from app import app
 import math
 from flask import Flask
 from flask_mail import Mail, Message
 import settings
+
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(__name__)
+app.secret_key = "secret key"
+# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+target = os.path.join(APP_ROOT, 'static/')
+app.config['APP_ROOT_2'] = target
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = set(['txt','pdf', 'png', 'jpg', 'jpeg', 'gif'])
 filename = "fubar"
